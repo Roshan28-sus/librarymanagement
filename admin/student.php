@@ -95,8 +95,8 @@ body
         </div>
   <a href="profile.php">Profile</a>
   <a href="books.php">Books</a>
-  <a href="#">Books request</a>
-  <a href="#">Issue Information</a>
+  <a href="request.php">Books request</a>
+  <a href="issue_info.php">Issue Information</a>
 </div>
 
 

@@ -102,8 +102,6 @@ body
    margin-left: 420px;
 }
 	</style>
-
-
 </head>
 <body>
 
@@ -152,40 +150,44 @@ function closeNav() {
 
  <br> <h2 style="text-align: center;">Approve Request</h2><br><br>
 
-  <form class="Approve" method="post" action="">
-    <input  class="form-control" type="text" name="approve" placeholder="Yes Or No" required=""><br>
+  <form class="Approve"  action="" method="post">
+    <input  class="form-control" type="text" name="approve" placeholder="Yes or No" required=""><br>
     <input class="form-control" type="text" name="issue" placeholder="Issue Date yyyy-mm-dd" required=""><br>
     <input class="form-control" type="text" name="expire" placeholder="Expire Date yyyy-mm-dd" required=""><br>
-    <button class="btn btn-default" type="submit" name="submit">Approve</button>
+    <button class="btn btn-default" type="submit" name="vsubmit" >Approve</button>
       </form>
   </div>
 </div>
+  
 <?php
-       if(isset($_POST['submit']))
-       {
-        mysqli_query($db,"UPDATE `issue_book` SET `approve`='$_POST[approve]',`issue`='$_POST[issue]',`expire`='$_POST[expire]' WHERE username='$_SESSION[name]' and bid='$_SESSION[bid]';");
+if(isset($_POST['vsubmit']))
+{
+  if(isset($_SESSION['login_user']))
+  {
+    mysqli_query($db," UPDATE `issue_book` SET `approve`='$_POST[approve]',`issue`='$_POST[issue]',`expire`='$_POST[expire]';");
+  }
+    if(isset($_SESSION['bid'])){
+      mysqli_query($db,"UPDATE `books` SET  `quantity`=`quantity`-1 ;");
+     echo "welcome back";
+   }
+ }
 
-        mysqli_query($db,"UPDATE books SET quantity = quantity-1 WHERE bid='$_SESSION[bid]';");
 
-        $res=mysqli_query($db,"SELECT qunatity FROM books WHERE bid='$_SESSION[bid]' ;");
+          /*
+        $res=mysqli_query($db,"SELECT quantity FROM books WHERE bid='$_SESSION[bid]' ;");
 
         while($row=mysqli_fetch_assoc($res))
         {
-          if($row['qunatity']==0)
+          if($row['quantity']==0)
           {
-            console.log("hello");
+            
             mysqli_query($db,"UPDATE books SET status='not-available' WHERE bid='$_SESSION[bid]';");
           }
-        }
-        ?>
-        <script type="text/javascript">
-          alert("Approved Successfully.");
-          window.location="request.php";
-        </script>
-        <?php
-        
-       }
+        }     
+       */
 
 ?>
+
+
 </body>
 </html>

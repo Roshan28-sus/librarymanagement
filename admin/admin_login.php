@@ -34,7 +34,7 @@
 	      		<h1 style="text-align: center;font-size: 25px;color: white;">Users Login Form</h1>
 	      		<form name="login" method="post" action="">
 	      			<div class="login">
-	      			<input class="form-control"  type="text" name="username" placeholder="username"  required="" ><br>
+	      			<input class="form-control"  type="text" name="adminname" placeholder="adminname"  required="" ><br>
 	      			<input class="form-control" type="password" name="password" placeholder="password"  required=""><br>
 	      			 <input class="btn btn-primary" type="submit" name="submit" value="Login" style="color: red; width: 60px; height: 30px">
                       </div>
@@ -57,7 +57,7 @@
        if(isset($_POST['submit']))
        {
             $count=0;
-            $res=mysqli_query($db,"SELECT * FROM `admin` WHERE username ='$_POST[username]' && password ='$_POST[password]';");
+            $res=mysqli_query($db,"SELECT * FROM `admin` WHERE adminname ='$_POST[adminname]' && password ='$_POST[password]';");
 
             $row=mysqli_fetch_assoc($res);
 
@@ -86,7 +86,7 @@
                 {
                   /*-----------if username and password matches-------*/
 
-                	$_SESSION['login_user'] = $_POST['username'];
+                	$_SESSION['login_user'] = $_POST['adminname'];
                   $_SESSION['pic'] = $row['pic'];
                     ?>
 

@@ -100,7 +100,7 @@ body
             </div><br>
 <div class="h">  <a href="add.php">Add Books</a> </div>
 <div class="h"> <a href="request.php">Books request</a></div>
-<div class="h"> <a href="#">Issue Information</a></div>
+<div class="h"> <a href="issue_info.php">Issue Information</a></div>
 </div>
 
 
@@ -155,7 +155,7 @@ function closeNav() {
 
         if(isset($_POST['submit']))
         {
-        	$q=mysqli_query($db,"SELECT * from books where name like '%$_POST[search]%'");
+        	$q=mysqli_query($db,"SELECT * from books where bookname like '%$_POST[search]%'");
 
         	if(mysqli_num_rows($q)==0)
         	{
@@ -182,7 +182,7 @@ function closeNav() {
 			{
 				echo "<tr>";
 				echo "<td>"; echo $row['bid']; echo "</td>";
-				echo "<td>"; echo $row['name']; echo "</td>";
+				echo "<td>"; echo $row['bookname']; echo "</td>";
 				echo "<td>"; echo $row['authors']; echo "</td>";
 				echo "<td>"; echo $row['edition']; echo "</td>";
 				echo "<td>"; echo $row['status']; echo "</td>";
@@ -201,7 +201,7 @@ function closeNav() {
 
         else
         {
-        	$res=mysqli_query($db," SELECT * FROM `books` ORDER BY `books`.`name` ASC ;");
+        	$res=mysqli_query($db," SELECT * FROM `books` ORDER BY `books`.`bookname` ASC ;");
 
         	echo "<table class='table table-bordered table-hover' >";
 			echo "<tr style='background-color: #8787f5;'>";
@@ -222,7 +222,7 @@ function closeNav() {
 			{
 				echo "<tr>";
 				echo "<td>"; echo $row['bid']; echo "</td>";
-				echo "<td>"; echo $row['name']; echo "</td>";
+				echo "<td>"; echo $row['bookname']; echo "</td>";
 				echo "<td>"; echo $row['authors']; echo "</td>";
 				echo "<td>"; echo $row['edition']; echo "</td>";
 				echo "<td>"; echo $row['status']; echo "</td>";

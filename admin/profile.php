@@ -93,17 +93,7 @@
 
           	echo "</tr>";
 
-          	echo "<tr>";
-          	  echo "<td>"; 
-          	    echo "<b> Roll: </b>";
-
-          	  echo"</td>"; 
-
-          	  echo"<td>";
-          	    echo $row['password'];
-
-          	  echo"</td>"; 
-          	echo "</tr>";
+          	
 
           	echo "<tr>";
           	  echo"<td>"; 
@@ -123,7 +113,7 @@
           	  echo"</td>";
 
           	  echo"<td>";
-          	    echo $row['email'];
+          	    echo $row['emial'];
 
           	  echo"</td>"; 
 

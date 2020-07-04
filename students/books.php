@@ -185,7 +185,7 @@ function closeNav() {
 			{
 				echo "<tr>";
 				echo "<td>"; echo $row['bid']; echo "</td>";
-				echo "<td>"; echo $row['name']; echo "</td>";
+				echo "<td>"; echo $row['bookname']; echo "</td>";
 				echo "<td>"; echo $row['authors']; echo "</td>";
 				echo "<td>"; echo $row['edition']; echo "</td>";
 				echo "<td>"; echo $row['status']; echo "</td>";
@@ -204,7 +204,7 @@ function closeNav() {
 
         else
         {
-        	$res=mysqli_query($db," SELECT * FROM `books` ORDER BY `books`.`name` ASC ;");
+        	$res=mysqli_query($db," SELECT * FROM `books` ORDER BY `books`.`bookname` ASC ;");
 
         	echo "<table class='table table-bordered table-hover' >";
 			echo "<tr style='background-color: #8787f5;'>";
@@ -225,7 +225,7 @@ function closeNav() {
 			{
 				echo "<tr>";
 				echo "<td>"; echo $row['bid']; echo "</td>";
-				echo "<td>"; echo $row['name']; echo "</td>";
+				echo "<td>"; echo $row['bookname']; echo "</td>";
 				echo "<td>"; echo $row['authors']; echo "</td>";
 				echo "<td>"; echo $row['edition']; echo "</td>";
 				echo "<td>"; echo $row['status']; echo "</td>";
@@ -241,9 +241,13 @@ function closeNav() {
 
         if(isset($_POST['submit1']))
         {
+
         	if(isset($_SESSION['login_user']))
         	{
+
         		mysqli_query($db,"INSERT INTO issue_book VALUES ('$_SESSION[login_user]', '$_POST[bid]','','','');");
+                  $bid=$_POST['bid'];
+                  $_SESSION['bid']=$bid;
 
         		?>
         		<script type="text/javascript">

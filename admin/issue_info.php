@@ -141,34 +141,18 @@ function closeNav() {
   document.body.style.backgroundColor = "white";
 }
 </script>
+
 <div class="container">
-  <div class="search">
-    <form method="post" action="" name=form1>
-      <input type="text" name="username" class="form-control" placeholder="Username" required=""><br>
-      <input type="text" name="bid" class="form-control" placeholder="BID" required=""><br>
-      <button class="btn btn-danger" name="submit" type="submit">Submit</button><br>
-      
-    </form>
-</div>
-  <h3 style="text-align: center;"> <i>Request of Book</i></h3>
-<?php
-   if(isset($_SESSION['login_user']))
-   {
-      $sql="SELECT student.username,roll,books.bid,bookname,authors,edition,status FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve =''";
-      
-      $res=mysqli_query($db,$sql);
-   
+  <h2 style="text-align: center; color: yellow;"><i>Information of Borrowing Books</i></h2>
+  <?php
+       if(isset($_SESSION['login_user']))
+       {
+        $sql="SELECT student.username,roll,books.bid,name,authors,edition,issue,expire FROM student inner join issue_book ON student.username=issue_book.username inner join books ON issue_book.bid=books.bid WHERE issue_book.approve ='Yes'
+        ORDER BY 'issue_book','return' ASC";
 
-   if(mysqli_num_rows($res)==0)
-          {
-            echo "<br><h2><b>";
-            echo "There is no pending request.";
-            echo "</br></h2></b>";
-          }
+        $res=mysqli_query($db,$sql);
 
-          else
-          {
-              echo "<table class='table table-bordered' >";
+        echo "<table class='table table-bordered ' >";
       echo "<tr style='background-color: #8787f5;'>";
         //Table header
         echo "<th>"; echo " username";  echo "</th>";
@@ -177,7 +161,8 @@ function closeNav() {
         echo "<th>"; echo "Book Name";  echo "</th>";
         echo "<th>"; echo "Authors Name";  echo "</th>";
         echo "<th>"; echo "Edition";  echo "</th>";
-        echo "<th>"; echo " Status";  echo "</th>";
+        echo "<th>"; echo "Issue Book";  echo "</th>";
+        echo "<th>"; echo "Expire Book";  echo "</th>";
         
       echo "</tr>";
 
@@ -190,44 +175,21 @@ function closeNav() {
         echo "<td>"; echo $row['username']; echo "</td>";
         echo "<td>"; echo $row['roll']; echo "</td>";
         echo "<td>"; echo $row['bid']; echo "</td>";
-        echo "<td>"; echo $row['bookname']; echo "</td>";
+        echo "<td>"; echo $row['name']; echo "</td>";
         echo "<td>"; echo $row['authors']; echo "</td>";
         echo "<td>"; echo $row['edition']; echo "</td>";
-        echo "<td>"; echo $row['status']; echo "</td>";
+        echo "<td>"; echo $row['issue']; echo "</td>";
+        echo "<th>"; echo $row['expire'];  echo "</th>";
         
 
         echo "</tr>";
       }
     echo "</table>" ;
-  }
-}
+       }
 
-  else
-  {
-        
-
-    ?>
-    <br>
-    <h4 style="text-align: center; color: yellow">You Need to Login First to see the Request.</h4>
-    
-    <?php
-  }
+  ?>
   
-  
-     if(isset($_POST['submit']))
-     {
-        $_SESSION['username']=$_SESSION['username'];
-        $_SESSION['bid'] = $_SESSION['bid'];
-
-        ?>
-        <script type="text/javascript">
-          window.location="approve.php";
-        </script>
-        <?php
-     }
-  
-    ?>
-    </div>
+</div>
 </div>
 </body>
 </html>

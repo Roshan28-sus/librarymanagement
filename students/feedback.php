@@ -78,7 +78,7 @@ include "connection.php";
         	 	{
         	 		echo "<tr>";
 
-        	 		echo "<td>"; echo $row['comment'];  echo "</td>";
+        	 		echo "<td>"; echo $row['comments'];  echo "</td>";
                                 
                               
 
@@ -101,7 +101,7 @@ include "connection.php";
         	 	{
         	 		echo "<tr>";
 
-        	 		echo "<td>"; echo $row['comment'];  echo "</td>";
+        	 		echo "<td>"; echo $row['comments'];  echo "</td>";
                                 echo "</tr>";
                 }
         }
